@@ -1,0 +1,7 @@
+    PID  RUID  EUID RUSER    EUSER    COMMAND
+   3716  1000     0 bgs      root     fusermount3
+   6083  1000     0 bgs      root     su
+   6179  1234     0 user1    root     passwd
+   9086  1000     0 bgs      root     sudo
+   9093  1000     0 bgs      root     sudo
+   9094  1234     0 user1    root     mycat

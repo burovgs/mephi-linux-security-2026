@@ -1,0 +1,58 @@
+    1  sudo groupadd -f students
+    2  getent group students 
+    3  sudo useradd -m -u 1234 -G students user1
+    4  sudo passwd user1
+    5  sudo chage -M 90 user1
+    6  sudo chage -l user1
+    7  sudo find / -type f -perm -4000 2>/dev/null
+    8  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >= 1000 && $3 == 0)'
+    9  sudo -u user1 cat /etc/shadow
+   10  sudo cp /usr/bin/cat /home/user1/mycat
+   11  sudo chown root:root /home/user1/mycat
+   12  sudo chmod u+s /home/user1/mycat
+   13  ls -l /home/user1/mycat
+   14  sudo ls -l /home/user1/mycat
+   15  su -user1
+   16  su - user1
+   17  sudo -u user1 touch /home/user1/testfile
+   18  sudo -u user1 chown root /home/user1/testfile
+   19  sudo cp /usr/bin/chown /home/user1/mychown
+   20  sudo setcap cap_chown+ep /home/user1/mychown
+   21  sudo getcap /home/user1/mychown
+   22  sudo -u user1 /home/user1/mychown root:root /home/user1/testfile
+   23  sudo ls -l /home/user1/testfile
+   24  echo "user1 ALL=(ALL) /usr/bin/timedatectl" | sudo tee /etc/sudoers.d/user1
+   25  sudo chmod 0440 /etc/sudoers.d/user1
+   26  sudo visudo -cf /etc/sudoers.d/user1
+   27  su - user1
+   28  sudo chmod o+rx /home/user1
+   29  history sudo rm -f /etc/sudoers.d/user1
+   30  echo "user1 ALL=(ALL) /usr/bin/date, /usr/bin/timedatectl" | sudo tee -a /etc/sudoers
+   31  sudo visudo -c
+   32  sudo chmod o+rx /home/user1
+   33  sudo rm -f /etc/sudoers.d/user1
+   34  echo "user1 ALL=(ALL) /usr/bin/date, /usr/bin/timedatectl" | sudo tee -a /etc/sudoers
+   35  stat /home/user1 > ~/stat.out
+   36  stat /home/user1/mycat >> ~/stat.out
+   37  stat /home/user1/mychown >> ~/stat.out
+   38  getcap /home/user1/mychown > ~/getcap.out
+   39  sudo find / -type g -perm -4000 2>/dev/null > ~files.out
+   40  sudo -u user1 /home/user1/mycat /dev/zero >/dev/null 2>&1 &
+   41  ps -eo pid,ruid,euid,ruser,euser,comm | awl 'NR==1 || ($2 >== 1000 && #3 == 0)' >~processes.out
+   42  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >== 1000 && #3 == 0)' >~processes.out
+   43  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >= 1000 && #3 == 0)' >~processes.out
+   44  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >= 1000 && $3 == 0)' > ~/processes.out
+   45  sudo killall mycat 2>/dev/null
+   46  history > ~/history.out
+   47  mkdir -p ~/mephi-linux-security-2026
+   48  cp ~/history.out ~/stat.out ~/getcap.out ~/files.out ~/processes.out ~/mephi-linux-security-2026/
+   49  sudo chmod o+rx /home/user1
+   50  stat /home/user1 > ~/mephi-linux-security-2026/stat.out
+   51  stat /home/user1/mycat >> ~/mephi-linux-security-2026/stat.out
+   52  stat /home/user1/mychown >> ~/mephi-linux-security-2026/stat.out
+   53  getcap /home/user1/mychown > ~/mephi-linux-security-2026/getcap.out
+   54  sudo find / -type f -perm -4000 2>/dev/null > ~/mephi-linux-security-2026/files.out
+   55  sudo -u user1 /home/user1/mycat /dev/zero >/dev/null 2>&1 &
+   56  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >= 1000 && $3 == 0)' > ~/mephi-linux-security-2026/processes.out
+   57  sudo killall mycat 2>/dev/null
+   58  history > ~/mephi-linux-security-2026/history.out
