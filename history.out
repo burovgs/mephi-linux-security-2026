@@ -56,3 +56,58 @@
    56  ps -eo pid,ruid,euid,ruser,euser,comm | awk 'NR==1 || ($2 >= 1000 && $3 == 0)' > ~/mephi-linux-security-2026/processes.out
    57  sudo killall mycat 2>/dev/null
    58  history > ~/mephi-linux-security-2026/history.out
+   59  sudo cp /etc/passwd /etc/shadow /etc/group /etc/sudoers ~/mephi-linux-security-2026/
+   60  cp ~/mephi-screenshot.png ~/mephi-linux-security-2026/ 2>/dev/null
+   61  sudo chown -R $USER:$USER ~/mephi-linux-security-2026/
+   62  chmod 644 ~/mephi-linux-security-2026/*
+   63  cat << 'EOF' > ~/mephi-linux-security-2026/README.md
+Табельный (уникальный) номер студента: `374396`  
+Операционная система: Fedora Linux
+
+| Файл | Раздел | Описание выполненной работы |
+| :--- | :---: | :--- |
+| `passwd`, `shadow`, `group` | 1 | Создан пользователь `user1` (UID `1234`), включен в группу `students`, настроен срок смены пароля 90 дней (`chage -M 90 user1`). |
+| `files.out` | 2.1 | Выполнен поиск всех файлов с установленным битом set-UID (`find / -type f -perm -4000`). |
+| `processes.out` | 2.2 | Выполнен мониторинг процессов с `EUID = 0` и `RUID` обычного пользователя (`ps -eo ...`). |
+| `stat.out` | 1, 3, 4 | Вывод команды `stat` для `/home/user1`, `/home/user1/mycat` (set-UID) и `/home/user1/mychown` (Capabilities). |
+| `getcap.out` | 4 | Настроена привилегия `cap_chown=ep` для копии утилиты `/home/user1/mychown`. |
+| `sudoers` | 5 | Пользователю `user1` разрешено изменять системное время через `sudo` (`/usr/bin/date`, `/usr/bin/timedatectl`). |
+| `mephi-screenshot.png` | 6.1 | Скриншот терминала с уникальным номеро. |
+| `history.out` | Все | Полная история выполненных команд в терминале. |
+EOF
+
+   64  sudo dnf install -y git
+   65  cd ~/mephi-linux-security-2026
+   66  git int
+   67  git init
+   68  git config user.name "Student 374396"
+   69  git config user.email "bgsburov@yandex.ru"
+   70  add history.out stat.out getcap.out passwd shadow group sudoers files.out processes.out README.md
+   71  git add history.out stat.out getcap.out passwd shadow group sudoers files.out processes.out README.md
+   72  git add mephi-screenshot.png 2>/dev/null
+   73  git commit -m "Add MEPHI homework 2026 files"
+   74  git branch -M main
+   75  git remote add origin https://github.com/burovgs/mephi-linux-security-2026.git
+   76  git push -u origin main
+   77  sudo dnf install -y gh
+   78  gh suth login
+   79  cd ~/mephi-linux-securitu-2027
+   80  cd ~/mephi-linux-securitu-2026
+   81  cd ~/mephi-linux-security-2026
+   82  git push -u origin main
+   83  sudo dnf install -y gh
+   84  gh auth status
+   85  gh suth setup-git
+   86  cd ~mepho-linux-security-2026
+   87  cd ~/mephi-linux-security-2026
+   88  git init
+   89  git config user.name "burovgs"
+   90  git config user.email 
+   91  git config user.email "burovgs@yandex.ru"
+   92  git add -A
+   93  git commit -m "Add MEPHI homework 2026 files"
+   94  gh auth login 
+   95  gh auth setup-git
+   96  cd ~mepho-linux-security-2026
+   97  cd ~/mephi-linux-security-2026
+   98  history > ~/mephi-linux-security-2026/history.out
